@@ -166,7 +166,6 @@ async def hourly_shitpost(channelid):
             f"{random.choice(person)} is a {random.choice(celebrity)} fan.",
             f"{random.choice(person)} is a {random.choice(band)} stan.",
             f"It is better to {random.choice(verb_action)} {random.choice(place)} than to {random.choice(verb_action)} {random.choice(place)}.\n-{random.choice(person)}",
-            f"Next stop, {random.choice(place)}!",
             f"{random.choice(person)} has adopted {random.choice(person)}.",
         ]
         shitpost_content = random.choice(actions)
