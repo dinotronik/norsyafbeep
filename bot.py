@@ -1,9 +1,12 @@
 from nextcord.ext import commands
+from nextcord import Intents, Interaction, SlashOption
 import requests, json, random, datetime, asyncio
 import nextcord
 import os
 
 things = json.load(open("list.json"))
+intents = Intents.default()
+intents.message_content = True
 
 person = things['person']
 continuous_action = things['continuous_action']
@@ -54,7 +57,7 @@ async def schedule_hourly_message(h, m, s, msg, channelid):
         await asyncio.sleep(60*60)
         #change asyncio.sleep value to desired interval (in seconds)
 
-@bot.command(name="hourly")
+#@bot.command(name="hourly")
 async def hourly(ctx, mystr:str, hour:int, minute:int, second:int):
     print(mystr, hour, minute, second)
 
@@ -75,6 +78,28 @@ async def hourly(ctx, mystr:str, hour:int, minute:int, second:int):
         await schedule_hourly_message(hour, minute, second, mystr, ctx.channel.id)
     else:
         await ctx.send("Hourly message cancelled.")
+
+@bot.slash_command(guild_ids=[747833347954442240, 698021111304159252])
+async def speak(interaction: Interaction, mystr:str, hour:int, minute:int, second:int):
+    print(mystr, hour, minute, second)
+
+    if not (0 < hour < 24 and 0 <= minute <= 60 and 0 <= second < 60):
+        raise commands.BadArgument()
+
+    time = datetime.time(hour, minute, second)
+    timestr = time.strftime("%I:%M:%S %p")
+    await interaction.response.send_message(f"An hourly message will be sent starting from {timestr} in this channel.\nHourly message: \"{mystr}\"\nConfirm by simply saying: `yes`")
+    try:
+        msg = await bot.wait_for("message", timeout=60, check=lambda message: message.author == interaction.author)
+    except asyncio.TimeoutError:
+        await interaction.response.send_message("You took too long to respond!")
+        return
+
+    if msg.content == "yes":
+        await interaction.response.send_message("Hourly message is ready!")
+        await schedule_hourly_message(hour, minute, second, mystr, interaction.channel.id)
+    else:
+        await interaction.response.send_message("Hourly message cancelled.")
 
 async def hourly_shitpost(channelid):
     while True:
@@ -180,7 +205,7 @@ async def shitpost(ctx):
     await ctx.send("Hourly shitposting has commenced.")
     await hourly_shitpost(ctx.channel.id)
 
-@hourly.error
+#@hourly.error
 async def hourly_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send("""Incorrect format. Correct format: `b!hourly "[message]" [hour] [minute] [second]`""")
