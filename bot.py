@@ -151,7 +151,7 @@ async def hourly_shitpost(channelid):
             f"{random.choice(person)} has converted to Buddhist. 阿弥陀佛! :pray:",
             f"The sister group for {random.choice(group)} consists of {five_man_list[0]}, {five_man_list[1]}, {five_man_list[2]}, {five_man_list[3]} and {five_man_list[4]}",
             f"A new season of {random.choice(show)} had just been announced starring {five_man_list[0]} and {five_man_list[1]}!",
-            f"{random.choice(person)} just joined the {random.choice(group)}:bangbang::bangbang:",
+            f"{random.choice(person)} just joined {random.choice(group)}:bangbang::bangbang:",
             f"Cluedo on crack: \"I suspect {random.choice(person)}, {random.choice(place)} with {random.choice(weapon)}.\"",
             f"{random.choice(person)} is actually {random.choice(celebrity)}\'s long lost sibling.",
             f"{random.choice(person)} did a little trolling.",
