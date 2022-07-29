@@ -76,9 +76,9 @@ async def hourly(ctx, mystr:str, hour:int, minute:int, second:int):
     else:
         await ctx.send("Hourly message cancelled.")
 
-async def hourly_shitpost(channelid):
+async def daily_shitpost(channelid):
     while True:
-        if datetime.datetime.now().second == 0:
+        if datetime.datetime.now().hour == 0 and datetime.datetime.now().minute == 0 and datetime.datetime.now().second == 0:
             five_man_list = random.sample(person, k=5)
             five_adj_list = random.sample(adjective, k=5)
             channel = bot.get_channel(channelid)
@@ -88,14 +88,14 @@ async def hourly_shitpost(channelid):
                 f"{random.choice(person)} has been sent to jail for being {random.choice(adjective)}.",
                 f"{random.choice(person)} killed {random.choice(person)} with {random.choice(weapon)}.",
                 f"{random.choice(person)} filed a lawsuit against {random.choice(person)}! :classical_building::judge:",
-                f"{random.choice(person)} filed a restraining order against {random.choice(person)}! :notepad_spiral::x:",
+                f"{random.choice(person)} filed a restraining order against {random.choice(person)}! :notepad_spiral::negative_squared_cross_mark:",
                 f"{random.choice(person)} blew up {random.choice(country)}! :tada:",
                 f"{random.choice(country)} has declared a war against {random.choice(country)}! :crossed_swords:",
                 f"{random.choice(person)} has become {random.choice(job)}!",
                 f"BREAKING NEWS: {(repeating_action)[0].upper() + (repeating_action)[1:]} is now legal in {random.choice(country)}! :white_check_mark:",
-                f"BREAKING NEWS: {(repeating_action)[0].upper() + (repeating_action)[1:]} is now illegal in {random.choice(country)}! :x:",
+                f"BREAKING NEWS: {(repeating_action)[0].upper() + (repeating_action)[1:]} is now illegal in {random.choice(country)}! :negative_squared_cross_mark:",
                 f"This just in—being {random.choice(adjective)} is now legal in {random.choice(country)}! :white_check_mark:",
-                f"This just in—being {random.choice(adjective)} is now illegal in {random.choice(country)}! :x:",
+                f"This just in—being {random.choice(adjective)} is now illegal in {random.choice(country)}! :negative_squared_cross_mark:",
                 f"{random.choice(person)} is now added to {random.choice(game)}!",
                 f"{random.choice(show)} is adding a new character, its {random.choice(person)}!",
                 f"Would you get locked in a room with {five_man_list[0]}, {five_man_list[1]} and {five_man_list[2]} for 5 million dollars?",
@@ -108,7 +108,7 @@ async def hourly_shitpost(channelid):
                 f"{random.choice(person)} was sent to hell for {random.choice(continuous_action)}. :smiling_imp:",
                 f"{random.choice(person)} was sent to hell for being {random.choice(adjective)}. :smiling_imp:",
                 f"If {random.choice(person)} was caught for {random.choice(continuous_action)}, they would probably {random.choice(verb_action)}.",
-                f"{five_man_list[0]} x {five_man_list[1]} is now canon. :pleading_face::Happy_heart_wink::smiling_face_with_3_hearts:",
+                f"{five_man_list[0]} x {five_man_list[1]} is now canon. :pleading_face::heart_eyes::smiling_face_with_3_hearts:",
                 f"{five_man_list[0]}, {five_man_list[1]} and {five_man_list[2]} are having a threesome. :hot_face::fire:",
                 f"{random.choice(person)} was the imposter. :postbox:",
                 f"{random.choice(person)} was not the imposter. :postbox:",
@@ -168,8 +168,8 @@ async def hourly_shitpost(channelid):
 
 @bot.command(name="shitpost")
 async def shitpost(ctx):
-    await ctx.send("Hourly shitposting has commenced.")
-    await hourly_shitpost(ctx.channel.id)
+    await ctx.send("Daily shitposting has commenced.")
+    await daily_shitpost(ctx.channel.id)
 
 @hourly.error
 async def hourly_error(ctx, error):
