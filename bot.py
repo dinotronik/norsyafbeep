@@ -160,10 +160,9 @@ async def hourly_shitpost(channelid):
             f"{random.choice(person)} has adopted {random.choice(person)}.",
         ]
         shitpost_content = random.choice(actions)
-        while datetime.datetime.now().minute == 0 and datetime.datetime.now().second == 0:
-            channel.send(shitpost_content)
-            print("IT WORKS")
-            asyncio.sleep(1)
+        while datetime.datetime.now().second == 0:
+            await channel.send(shitpost_content)
+            await asyncio.sleep(1)
             
 
 @bot.command(name="shitpost")
