@@ -29,7 +29,7 @@
         "Jun Wen",
         "Kuan Yung",
         "Jia Sheng",
-        "Jocelyn",
+        "Pei Shan",
         "Chun Yee"
     ]
     ,
@@ -56,7 +56,12 @@
         "Mark Zuckerberg",
         "Jeff Bezos",
         "Elon Musk",
-        "Steve Jobs"
+        "Steve Jobs",
+        "Kim Jong Un",
+        "Vladimir Putin",
+        "Najib",
+        "Donald Trump",
+        "Adolf Hitler"
     ]
     ,
     "continuous_action": [
@@ -170,7 +175,8 @@
         "get pregnant",
         "get in trouble",
         "get AIDS",
-        "get a seizure"
+        "get a seizure",
+        "get cancelled"
     ]
     ,
     "weapon": [
@@ -190,8 +196,8 @@
         "math",
         "drugs",
         "a nibble on their earlobe",
-        "a car"
-
+        "a car",
+        "a condom"
     ]
     ,
     "country": [
@@ -205,7 +211,10 @@
         "Nigeria",
         "Russia",
         "Britain",
-        "Varola"
+        "Varola",
+        "Japan",
+        "North Korea",
+        "Malaysia"
     ]
     ,
     "job": [
@@ -219,9 +228,9 @@
         "a Vtuber",
         "a beggar",
         "a lawyer",
-        "a martial artist",
         "an artist",
-        "a professional driver"
+        "a professional driver",
+        "an OnlyFans model"
     ]
     ,
     "game": [
@@ -239,7 +248,8 @@
         "FNAF",
         "Clash Royale",
         "Fall Guys",
-        "Team Fortress 2"
+        "Team Fortress 2",
+        "Valorant"
     ]
     ,
     "show": [
@@ -271,10 +281,7 @@
         "EXO",
         "Big Bang",
         "Itzy",
-        "(G)I-DLE",
-        "Imagine Dragons",
-        "The Beatles",
-        "Queen"
+        "(G)I-DLE"
     ]
     ,
     "subject": [
@@ -302,6 +309,7 @@
         "in the White House",
         "in the Student Affairs room",
         "in the Minecraft dirt house",
+        "in the Nether",
         "on a tree",
         "in their mom's bedroom",
         "under the sea",
@@ -331,6 +339,10 @@
         "Cloud 9",
         "1000 Ping",
         "indian tech scammers",
-        "the Avengers"
+        "the Avengers",
+        "the Jake Paulers",
+        "the Gucci Gang",
+        "the Taliban",
+        "the Illuminati"
     ]
 }

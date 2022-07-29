@@ -78,7 +78,7 @@ async def hourly(ctx, mystr:str, hour:int, minute:int, second:int):
 
 async def hourly_shitpost(channelid):
     while True:
-        if datetime.datetime.now().minute == 0 and datetime.datetime.now().second == 0:
+        if datetime.datetime.now().second == 0:
             five_man_list = random.sample(person, k=5)
             five_adj_list = random.sample(adjective, k=5)
             channel = bot.get_channel(channelid)
@@ -159,10 +159,11 @@ async def hourly_shitpost(channelid):
                 f"{random.choice(person)} is a {random.choice(band)} stan.",
                 f"It is better to {random.choice(verb_action)} {random.choice(place)} than to {random.choice(verb_action)} {random.choice(place)}.\n-{random.choice(person)}",
                 f"{random.choice(person)} has adopted {random.choice(person)}.",
+                f"{random.choice(person)} is {random.choice(continuous_action_with_noun)} {random.choice(person)}"
             ]
             shitpost_content = random.choice(actions)
             await channel.send(shitpost_content)
-            await asyncio.sleep(1)
+            await asyncio.sleep(2)
             
 
 @bot.command(name="shitpost")
