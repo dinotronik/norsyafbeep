@@ -1,5 +1,5 @@
 from nextcord.ext import commands
-import requests, json, random, datetime, asyncio
+import json, random, datetime, asyncio
 import nextcord
 import os
 
@@ -78,15 +78,6 @@ async def hourly(ctx, mystr:str, hour:int, minute:int, second:int):
 
 async def hourly_shitpost(channelid):
     while True:
-        now = datetime.datetime.now()
-        then = now+datetime.timedelta(hours=1)
-        #change timedelta to desired waiting duration
-        if then < now:
-            then += datetime.timedelta(hours=1)
-            #here too
-        wait_time = (then-now).total_seconds()
-        await asyncio.sleep(wait_time)
-
         five_man_list = random.sample(person, k=5)
         five_adj_list = random.sample(adjective, k=5)
         channel = bot.get_channel(channelid)
@@ -169,10 +160,9 @@ async def hourly_shitpost(channelid):
             f"{random.choice(person)} has adopted {random.choice(person)}.",
         ]
         shitpost_content = random.choice(actions)
-
-        await channel.send(shitpost_content)
-        await asyncio.sleep(1)
-
+        while datetime.datetime.now().second == 0:
+            await channel.send(shitpost_content)
+            await asyncio.sleep(1)
 
 @bot.command(name="shitpost")
 async def shitpost(ctx):
