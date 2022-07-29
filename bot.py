@@ -77,7 +77,7 @@ async def hourly(ctx, mystr:str, hour:int, minute:int, second:int):
         await ctx.send("Hourly message cancelled.")
 
 async def hourly_shitpost(channelid):
-    while datetime.datetime.now().minute == 0 and datetime.datetime.now().second == 0:
+    while datetime.datetime.now().second == 0:
         five_man_list = random.sample(person, k=5)
         five_adj_list = random.sample(adjective, k=5)
         channel = bot.get_channel(channelid)
