@@ -44,7 +44,7 @@ async def schedule_hourly_message(h, m, s, msg, channelid):
         now = datetime.datetime.now()
         then = now.replace(hour=h, minute=m, second=s)
         if then < now:
-            then += datetime.timedelta(seconds=1)
+            then += datetime.timedelta(hours=1)
         wait_time = (then-now).total_seconds()
         await asyncio.sleep(wait_time)
 
