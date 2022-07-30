@@ -61,7 +61,8 @@
         "Vladimir Putin",
         "Najib",
         "Donald Trump",
-        "Adolf Hitler"
+        "Adolf Hitler",
+        "Santa Claus"
     ]
     ,
     "continuous_action": [
@@ -98,7 +99,9 @@
         "scamming people",
         "rolling Doubles 3 times in a row",
         "coding a horrible bot",
-        "having an obsession with fictional characters"
+        "having an obsession with fictional characters",
+        "mining crypto",
+        "owning NFTs"
     ]
     ,
     "continuous_action_with_noun": [
@@ -116,7 +119,11 @@
         "killing",
         "scamming",
         "losing a bet with",
-        "facetiming"
+        "cheating on",
+        "having sex with",
+        "grooming",
+        "playing with",
+        "talking to"
     ]
     ,
     "past_action_with_noun": [
@@ -131,7 +138,11 @@
         "stalked",
         "kissed",
         "killed",
-        "scammed"
+        "scammed",
+        "broke up with",
+        "had sex with",
+        "played with",
+        "talked to"
     ]
     ,
     "adjective": [
@@ -176,7 +187,8 @@
         "get in trouble",
         "get AIDS",
         "get a seizure",
-        "get cancelled"
+        "get cancelled",
+        "get tortured"
     ]
     ,
     "weapon": [
@@ -224,13 +236,14 @@
         "a rapist",
         "an actor",
         "a police",
-        "a brokie",
         "a Vtuber",
         "a beggar",
         "a lawyer",
         "an artist",
         "a professional driver",
-        "an OnlyFans model"
+        "an OnlyFans model",
+        "a pro gamer",
+        "a teacher"
     ]
     ,
     "game": [
@@ -307,7 +320,6 @@
         "under the Temburong Bridge",
         "in their mom's basement",
         "in the White House",
-        "in the Student Affairs room",
         "in the Minecraft dirt house",
         "in the Nether",
         "on a tree",
@@ -320,12 +332,14 @@
         "in the bathroom",
         "in the airport",
         "in the library",
-        "on the table",
+        "under the dining table",
         "in the streets",
         "in the kindergarten",
         "in the orphanage",
-        "in the red room",
-        "over the rainbow"
+        "in the torture room",
+        "in prison",
+        "in space",
+        "in the public"
     ]
     ,
     "group": [

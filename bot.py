@@ -22,7 +22,6 @@ celebrity = things['celebrity']
 place = things['place']
 group = things['group']
 
-repeating_show = random.choice(show)
 repeating_action = random.choice(continuous_action)
 
 intents = nextcord.Intents.default()
@@ -81,8 +80,7 @@ async def daily_shitpost(channelid):
         if datetime.datetime.now().hour == 0 and datetime.datetime.now().minute == 0 and datetime.datetime.now().second == 0:
             five_man_list = random.sample(person, k=5)
             five_adj_list = random.sample(adjective, k=5)
-            channel = bot.get_channel(channelid)
-            global actions
+
             actions = [
                 f"{random.choice(person)} has been sent to jail for {random.choice(continuous_action)}.",
                 f"{random.choice(person)} has been sent to jail for being {random.choice(adjective)}.",
@@ -99,7 +97,7 @@ async def daily_shitpost(channelid):
                 f"{random.choice(person)} is now added to {random.choice(game)}!",
                 f"{random.choice(show)} is adding a new character, its {random.choice(person)}!",
                 f"Would you get locked in a room with {five_man_list[0]}, {five_man_list[1]} and {five_man_list[2]} for 5 million dollars?",
-                f"{random.choice(person)} failed art school. :artist:",
+                f"{random.choice(person)} failed art school, this can't be good.",
                 f"{random.choice(person)} has joined {random.choice(band)}!",
                 f"{random.choice(person)} is now the leader of the \"{(repeating_action)[0].upper() + (repeating_action)[1:]}\" club.",
                 f"{random.choice(person)} is now the leader of the \"Being {random.choice(adjective)}\" club.",
@@ -148,7 +146,7 @@ async def daily_shitpost(channelid):
                 f"{random.choice(person)} is actually {random.choice(celebrity)}\'s long lost sibling.",
                 f"{random.choice(person)} did a little trolling. :smiling_imp:",
                 f"Today is {random.choice(person)}\'s birthday! :balloon::partying_face::tada:",
-                f"Knock knock, {random.choice(person)}\'s on your door. Would you let them in?",
+                f"Knock knock, {random.choice(person)}\'s on your door. Will you let them in?",
                 f"{random.choice(person)} went back in time and {random.choice(past_action_with_noun)} {random.choice(person)}.",
                 f"{random.choice(person)} went back in time to stop themselves from {random.choice(continuous_action)}.",
                 f"{random.choice(person)} had just {random.choice(past_action_with_noun)} {random.choice(person)}. Cry about it.",
@@ -159,13 +157,15 @@ async def daily_shitpost(channelid):
                 f"{random.choice(person)} is a {random.choice(band)} stan.",
                 f"It is better to {random.choice(verb_action)} {random.choice(place)} than to {random.choice(verb_action)} {random.choice(place)}.\n-{random.choice(person)}",
                 f"{random.choice(person)} has adopted {random.choice(person)}.",
-                f"{random.choice(person)} is {random.choice(continuous_action_with_noun)} {random.choice(person)}"
+                f"I saw {random.choice(person)} {random.choice(continuous_action_with_noun)} {random.choice(person)} :astonished:"
+                f"I saw {random.choice(person)} {random.choice(continuous_action_with_noun)} children. Should I call the cops?",
+                f"In a game of hide and seek, {random.choice(person)} would most likely hide {random.choice(place)}",
             ]
+            channel = bot.get_channel(channelid)
             shitpost_content = random.choice(actions)
             await channel.send(shitpost_content)
-            await asyncio.sleep(2)
+        await asyncio.sleep(1)
             
-
 @bot.command(name="shitpost")
 async def shitpost(ctx):
     await ctx.send("Daily shitposting has commenced.")
