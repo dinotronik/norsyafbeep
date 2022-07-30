@@ -33,6 +33,9 @@ bot = commands.Bot(command_prefix="b!", intents=intents)
 async def SendMessage(ctx):
     await ctx.send('Fuck Hadi')
 
+@bot.command(name="say")
+async def SendMessage(ctx, mystr:str):
+    await ctx.send(mystr)
 
 @bot.command(name="hadie")
 async def hadie(ctx):
