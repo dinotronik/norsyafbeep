@@ -216,7 +216,7 @@ async def shitpost(ctx):
 @hourly.error
 async def hourly_error(ctx, error):
     if isinstance(error, commands.BadArgument):
-        await ctx.send("""Incorrect format. Correct format: `b!hourly "[message]" [hour] [minute] [second]`""")
+        await ctx.send("""Incorrect format. Correct format: `b!hourly "[message]" [minute] [second]`""")
 
 @bot.event
 async def on_ready():
