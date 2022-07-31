@@ -167,11 +167,14 @@ async def daily_shitpost(channelid):
             shitpost_content = random.choice(actions)
             await channel.send(shitpost_content)
         await asyncio.sleep(1)
-            
+
 @bot.command(name="shitpost")
 async def shitpost(ctx):
-    await ctx.send("Daily shitposting has commenced.")
-    await daily_shitpost(ctx.channel.id)
+    if ctx.channel.id == 1002088606904627250:
+        await ctx.send("Daily shitposting has commenced.")
+        await daily_shitpost(ctx.channel.id)
+    else:
+        await ctx.send("This command only works in <#1002088606904627250>")
 
 @hourly.error
 async def hourly_error(ctx, error):
