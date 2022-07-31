@@ -89,8 +89,8 @@ async def hourly(ctx, message:str, minute:int, second:int):
     if not (0 <= minute <= 60 and 0 <= second < 60):
         raise commands.BadArgument()
 
-    hour=datetime.datetime.now().hour
-    time = datetime.time(hour, minute, second)
+    hour = datetime.datetime.now().hour
+    time = datetime.time(int(hour), minute, second)
     timemin = time.strftime("%-M")
     timesec = datetime.time("%-S")
     await ctx.send(f"An hourly message will be sent at every {timemin} minute and {timesec} second in this channel.\nHourly message: \"{message}\"\nTo confirm simply type `yes`")
