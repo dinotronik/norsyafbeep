@@ -79,7 +79,7 @@ async def hourly(ctx, mystr:str, hour:int, minute:int, second:int):
 
 async def daily_shitpost(channelid):
     while True:
-        if datetime.datetime.now().hour == 0 and datetime.datetime.now().minute == 0 and datetime.datetime.now().second == 0:
+        if datetime.datetime.now().hour == 16 and datetime.datetime.now().minute == 0 and datetime.datetime.now().second == 0:
             five_man_list = random.sample(person, k=5)
             five_adj_list = random.sample(adjective, k=5)
 
