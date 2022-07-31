@@ -1,6 +1,7 @@
 from nextcord.ext import commands
 import json, random, datetime, asyncio
 import nextcord
+from nextcord import Interaction
 import os
 
 things = json.load(open("list.json"))
@@ -28,6 +29,14 @@ intents = nextcord.Intents.default()
 intents.message_content = True
 
 bot = commands.Bot(command_prefix="b!", intents=intents)
+testServerId = 698021111304159252
+
+@bot.slash_command(name="say", description="Repeats your message.", guild_ids=[testServerId])
+async def sendmessage(interaction: Interaction, text):
+    if interaction.user.id == 234258656911163392:
+        await interaction.response.send_message("Syaffique is fucking stupid.")
+    else:
+        await interaction.response.send_message(text)
 
 @bot.command(name="say")
 async def SendMessage(ctx, mystr:str):
@@ -36,9 +45,13 @@ async def SendMessage(ctx, mystr:str):
     else:
         await ctx.send(mystr)
 
+@bot.slash_command(name="hadie", description="Sends a picture of Hadi, Professional Mother Player.", guild_ids=[testServerId])
+async def hadie(interaction: Interaction):
+    await interaction.response.send_message("https://imgur.com/a/DwsTPm1")
+
 @bot.command(name="hadie")
 async def hadie(ctx):
-    await ctx.send("https://imgur.com/a/DwsTPm1")     
+    await ctx.send("https://imgur.com/a/DwsTPm1")   
 
 async def schedule_hourly_message(h, m, s, msg, channelid):
     while True:
@@ -55,16 +68,28 @@ async def schedule_hourly_message(h, m, s, msg, channelid):
         await asyncio.sleep(60*60)
         #change asyncio.sleep value to desired interval (in seconds)
 
-@bot.command(name="hourly")
-async def hourly(ctx, mystr:str, hour:int, minute:int, second:int):
-    print(mystr, hour, minute, second)
+@bot.slash_command(name="hourly", description="Sends an hourly message at a specific time.", guild_ids=[testServerId])
+async def hourly(interaction: Interaction, text:str, hour:int, minute:int, second:int):
+    print(text, hour, minute, second)
 
     if not (0 < hour < 24 and 0 <= minute <= 60 and 0 <= second < 60):
         raise commands.BadArgument()
 
     time = datetime.time(hour, minute, second)
     timestr = time.strftime("%I:%M:%S %p")
-    await ctx.send(f"An hourly message will be sent starting from {timestr} in this channel.\nHourly message: \"{mystr}\"\nConfirm by simply saying: `yes`")
+    await interaction.response.send_message(f"An hourly message will be sent starting from {timestr} in this channel.\nHourly message: \"{text}\"")
+    await schedule_hourly_message(hour, minute, second, text, interaction.channel_id)
+
+@bot.command(name="hourly")
+async def hourly(ctx, text:str, hour:int, minute:int, second:int):
+    print(text, hour, minute, second)
+
+    if not (0 < hour < 24 and 0 <= minute <= 60 and 0 <= second < 60):
+        raise commands.BadArgument()
+
+    time = datetime.time(hour, minute, second)
+    timestr = time.strftime("%I:%M:%S %p")
+    await ctx.send(f"An hourly message will be sent starting from {timestr} in this channel.\nHourly message: \"{text}\"\nConfirm by simply saying: `yes`")
     try:
         msg = await bot.wait_for("message", timeout=60, check=lambda message: message.author == ctx.author)
     except asyncio.TimeoutError:
@@ -73,7 +98,7 @@ async def hourly(ctx, mystr:str, hour:int, minute:int, second:int):
 
     if msg.content == "yes":
         await ctx.send("Hourly message is ready!")
-        await schedule_hourly_message(hour, minute, second, mystr, ctx.channel.id)
+        await schedule_hourly_message(hour, minute, second, text, ctx.channel.id)
     else:
         await ctx.send("Hourly message cancelled.")
 
@@ -167,6 +192,14 @@ async def daily_shitpost(channelid):
             shitpost_content = random.choice(actions)
             await channel.send(shitpost_content)
         await asyncio.sleep(1)
+
+@bot.slash_command(name="shitpost", description="Sends a randomly generated shitpost. Only works at #bot-shitpost.", guild_ids=[testServerId])
+async def shitpost(interaction: Interaction):
+    if interaction.channel_id == 1002088606904627250:
+        await interaction.response.send_message("Daily shitposting has commenced.")
+        await daily_shitpost(interaction.channel_id)
+    else:
+        await interaction.response.send_message("This command only works in <#1002088606904627250>")
 
 @bot.command(name="shitpost")
 async def shitpost(ctx):
