@@ -1,3 +1,4 @@
+from re import M
 from nextcord.ext import commands
 import json, random, datetime, asyncio
 import nextcord
@@ -73,9 +74,11 @@ async def hourly(interaction: Interaction, message:str, minute:int, second:int):
 
     if not (0 <= minute <= 60 and 0 <= second < 60):
         raise commands.BadArgument()
-
-    timemin = datetime.time(minute)
-    timesec = datetime.time(second)
+    
+    hour=datetime.datetime.now().hour
+    time = datetime.time(hour, minute, second)
+    timemin = time.strftime("%-M")
+    timesec = datetime.time("%-S")
     await interaction.response.send_message(f"An hourly message will be sent at every {timemin} minute and {timesec} second in this channel.\nHourly message: \"{message}\"")
     await schedule_hourly_message(minute, second, message, interaction.channel_id)
 
@@ -86,8 +89,10 @@ async def hourly(ctx, message:str, minute:int, second:int):
     if not (0 <= minute <= 60 and 0 <= second < 60):
         raise commands.BadArgument()
 
-    timemin = datetime.time(minute)
-    timesec = datetime.time(second)
+    hour=datetime.datetime.now().hour
+    time = datetime.time(hour, minute, second)
+    timemin = time.strftime("%-M")
+    timesec = datetime.time("%-S")
     await ctx.send(f"An hourly message will be sent at every {timemin} minute and {timesec} second in this channel.\nHourly message: \"{message}\"\nTo confirm simply type `yes`")
     try:
         msg = await bot.wait_for("message", timeout=60, check=lambda message: message.author == ctx.author)
