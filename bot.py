@@ -75,7 +75,7 @@ async def hourly(interaction: Interaction, message:str, minute:int, second:int):
     if not (0 <= minute <= 60 and 0 <= second < 60):
         raise commands.BadArgument()
     
-    hour=datetime.datetime.now().hour
+    hour:int = datetime.datetime.now().hour
     time = datetime.time(hour, minute, second)
     timemin = time.strftime("%-M")
     timesec = datetime.time("%-S")
