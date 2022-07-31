@@ -32,18 +32,18 @@ bot = commands.Bot(command_prefix="b!", intents=intents)
 testServerId = 698021111304159252
 
 @bot.slash_command(name="say", description="Repeats your message.", guild_ids=[testServerId])
-async def sendmessage(interaction: Interaction, text):
+async def sendmessage(interaction: Interaction, message):
     if interaction.user.id == 234258656911163392:
         await interaction.response.send_message("Syaffique is fucking stupid.")
     else:
-        await interaction.response.send_message(text)
+        await interaction.response.send_message(message)
 
 @bot.command(name="say")
-async def SendMessage(ctx, mystr:str):
+async def SendMessage(ctx, message:str):
     if ctx.author.id == 234258656911163392:
         await ctx.send("Syaffique is fucking stupid.")
     else:
-        await ctx.send(mystr)
+        await ctx.send(message)
 
 @bot.slash_command(name="hadie", description="Sends a picture of Hadi, Professional Mother Player.", guild_ids=[testServerId])
 async def hadie(interaction: Interaction):
@@ -69,27 +69,27 @@ async def schedule_hourly_message(h, m, s, msg, channelid):
         #change asyncio.sleep value to desired interval (in seconds)
 
 @bot.slash_command(name="hourly", description="Sends an hourly message at a specific time.", guild_ids=[testServerId])
-async def hourly(interaction: Interaction, text:str, hour:int, minute:int, second:int):
-    print(text, hour, minute, second)
+async def hourly(interaction: Interaction, message:str, hour:int, minute:int, second:int):
+    print(message, hour, minute, second)
 
     if not (0 < hour < 24 and 0 <= minute <= 60 and 0 <= second < 60):
         raise commands.BadArgument()
 
     time = datetime.time(hour, minute, second)
     timestr = time.strftime("%I:%M:%S %p")
-    await interaction.response.send_message(f"An hourly message will be sent starting from {timestr} in this channel.\nHourly message: \"{text}\"")
-    await schedule_hourly_message(hour, minute, second, text, interaction.channel_id)
+    await interaction.response.send_message(f"An hourly message will be sent starting from {timestr} in this channel.\nHourly message: \"{message}\"")
+    await schedule_hourly_message(hour, minute, second, message, interaction.channel_id)
 
 @bot.command(name="hourly")
-async def hourly(ctx, text:str, hour:int, minute:int, second:int):
-    print(text, hour, minute, second)
+async def hourly(ctx, message:str, hour:int, minute:int, second:int):
+    print(message, hour, minute, second)
 
     if not (0 < hour < 24 and 0 <= minute <= 60 and 0 <= second < 60):
         raise commands.BadArgument()
 
     time = datetime.time(hour, minute, second)
     timestr = time.strftime("%I:%M:%S %p")
-    await ctx.send(f"An hourly message will be sent starting from {timestr} in this channel.\nHourly message: \"{text}\"\nConfirm by simply saying: `yes`")
+    await ctx.send(f"An hourly message will be sent starting from {timestr} in this channel.\nHourly message: \"{message}\"\nConfirm by simply saying: `yes`")
     try:
         msg = await bot.wait_for("message", timeout=60, check=lambda message: message.author == ctx.author)
     except asyncio.TimeoutError:
@@ -98,7 +98,7 @@ async def hourly(ctx, text:str, hour:int, minute:int, second:int):
 
     if msg.content == "yes":
         await ctx.send("Hourly message is ready!")
-        await schedule_hourly_message(hour, minute, second, text, ctx.channel.id)
+        await schedule_hourly_message(hour, minute, second, message, ctx.channel.id)
     else:
         await ctx.send("Hourly message cancelled.")
 
