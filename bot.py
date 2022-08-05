@@ -170,7 +170,7 @@ async def daily_shitpost(channelid):
                 f"{random.choice(person)} has converted to Muslim. Alhamdulillah my brothers! :kaaba:",
                 f"{random.choice(person)} has converted to Christian. Amen! :cross:",
                 f"{random.choice(person)} has converted to Buddhist. 阿弥陀佛! :pray:",
-                f"The sister group for {random.choice(group)} consists of {five_man_list[0]}, {five_man_list[1]}, {five_man_list[2]}, {five_man_list[3]} and {five_man_list[4]}",
+                f"The sister group for {random.choice(group)} consists of {five_man_list[0]}, {five_man_list[1]}, {five_man_list[2]}, {five_man_list[3]} and {five_man_list[4]}.",
                 f"A new season of {random.choice(show)} had just been announced starring {five_man_list[0]} and {five_man_list[1]}!",
                 f"{random.choice(person)} just joined {random.choice(group)}:bangbang::bangbang:",
                 f"Cluedo on crack: \"I suspect {random.choice(person)}, {random.choice(place)}, with {random.choice(weapon)}.\"",
@@ -183,14 +183,14 @@ async def daily_shitpost(channelid):
                 f"{random.choice(person)} had just {random.choice(past_action_with_noun)} {random.choice(person)}. Cry about it.",
                 f"Guys, being {random.choice(adjective)} is no laughing matter.",
                 f"{random.choice(person)} is now transgender! :transgender_flag:",
-                f"Describe {random.choice(person)} in 3 words: {five_adj_list[0]}, {five_adj_list[1]} and {five_adj_list[2]}",
+                f"Describe {random.choice(person)} in 3 words: {five_adj_list[0]}, {five_adj_list[1]} and {five_adj_list[2]}.",
                 f"{random.choice(person)} is a {random.choice(celebrity)} fan.",
                 f"{random.choice(person)} is a {random.choice(band)} stan.",
                 f"It is better to {random.choice(verb_action)} {random.choice(place)} than to {random.choice(verb_action)} {random.choice(place)}.\n-{random.choice(person)}",
                 f"{random.choice(person)} has adopted {random.choice(person)}.",
-                f"I saw {random.choice(person)} {random.choice(continuous_action_with_noun)} {random.choice(person)} :astonished:"
+                f"I saw {random.choice(person)} {random.choice(continuous_action_with_noun)} {random.choice(person)}. :astonished:"
                 f"I saw {random.choice(person)} {random.choice(continuous_action_with_noun)} children. Should I call the cops?",
-                f"In a game of hide and seek, {random.choice(person)} would most likely hide {random.choice(place)}",
+                f"In a game of hide and seek, {random.choice(person)} would most likely hide {random.choice(place)}.",
             ]
             channel = bot.get_channel(channelid)
             shitpost_content = random.choice(actions)
