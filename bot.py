@@ -195,7 +195,8 @@ async def daily_shitpost(channelid):
             channel = bot.get_channel(channelid)
             shitpost_content = random.choice(actions)
             await channel.send(shitpost_content)
-        await asyncio.sleep(60)
+            await asyncio.sleep(60)
+        await asyncio.sleep(1)
 
 @bot.slash_command(name="shitpost", description="Sends a randomly generated shitpost. Only works at #bot-shitpost.", guild_ids=[testServerId])
 async def shitpost(interaction: Interaction):
