@@ -108,7 +108,7 @@ async def hourly(ctx, message:str, minute:int, second:int):
 
 async def daily_shitpost(channelid):
     while True:
-        while datetime.datetime.now().hour == 16 and datetime.datetime.now().minute == 0:
+        if datetime.datetime.now().hour == 15 and datetime.datetime.now().minute == 30:
             five_man_list = random.sample(person, k=5)
             five_adj_list = random.sample(adjective, k=5)
 
@@ -188,7 +188,7 @@ async def daily_shitpost(channelid):
                 f"{random.choice(person)} is a {random.choice(band)} stan.",
                 f"It is better to {random.choice(verb_action)} {random.choice(place)} than to {random.choice(verb_action)} {random.choice(place)}.\n-{random.choice(person)}",
                 f"{random.choice(person)} has adopted {random.choice(person)}.",
-                f"I saw {random.choice(person)} {random.choice(continuous_action_with_noun)} {random.choice(person)}. :astonished:"
+                f"I saw {random.choice(person)} {random.choice(continuous_action_with_noun)} {random.choice(person)}. :astonished:",
                 f"I saw {random.choice(person)} {random.choice(continuous_action_with_noun)} children. Should I call the cops?",
                 f"In a game of hide and seek, {random.choice(person)} would most likely hide {random.choice(place)}.",
             ]
@@ -196,11 +196,10 @@ async def daily_shitpost(channelid):
             shitpost_content = random.choice(actions)
             await channel.send(shitpost_content)
             await asyncio.sleep(60)
-        await asyncio.sleep(1)
 
 @bot.slash_command(name="shitpost", description="Sends a randomly generated shitpost. Only works at #bot-shitpost.", guild_ids=[testServerId])
 async def shitpost(interaction: Interaction):
-    if interaction.channel_id == 1002088606904627250:
+    if interaction.channel_id == 1002088606904627250 or 698057252283613214:
         await interaction.response.send_message("Daily shitposting has commenced.")
         await daily_shitpost(interaction.channel_id)
     else:
@@ -208,7 +207,7 @@ async def shitpost(interaction: Interaction):
 
 @bot.command(name="shitpost")
 async def shitpost(ctx):
-    if ctx.channel.id == 1002088606904627250:
+    if ctx.channel.id == 1002088606904627250 or 698057252283613214:
         await ctx.send("Daily shitposting has commenced.")
         await daily_shitpost(ctx.channel.id)
     else:
