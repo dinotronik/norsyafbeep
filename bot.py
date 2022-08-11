@@ -108,7 +108,7 @@ async def hourly(ctx, message:str, minute:int, second:int):
 
 async def daily_shitpost(channelid):
     while True:
-        if datetime.datetime.now().hour == 15 and datetime.datetime.now().minute == 30:
+        if datetime.datetime.now().hour == 15 and datetime.datetime.now().minute == 35:
             five_man_list = random.sample(person, k=5)
             five_adj_list = random.sample(adjective, k=5)
 
