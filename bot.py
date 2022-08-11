@@ -108,7 +108,7 @@ async def hourly(ctx, message:str, minute:int, second:int):
 
 async def daily_shitpost(channelid):
     while True:
-        if datetime.datetime.now().hour == 15 and datetime.datetime.now().minute == 38:
+        if datetime.datetime.now().hour == 15 and datetime.datetime.now().minute == 40:
             five_man_list = random.sample(person, k=5)
             five_adj_list = random.sample(adjective, k=5)
 
@@ -195,6 +195,7 @@ async def daily_shitpost(channelid):
             channel = bot.get_channel(channelid)
             shitpost_content = random.choice(actions)
             await channel.send(shitpost_content)
+            await asyncio.sleep(1)
         await asyncio.sleep(1)
 
 @bot.slash_command(name="shitpost", description="Sends a randomly generated shitpost. Only works at #bot-shitpost.", guild_ids=[testServerId])
