@@ -107,10 +107,15 @@ async def hourly(ctx, message:str, minute:int, second:int):
         await ctx.send("Hourly message cancelled.")
 
 async def daily_shitpost(channelid):
-    while datetime.datetime.now().hour == 16 and datetime.datetime.now().minute == 0:
+    while True:
+        now = datetime.datetime.now()
+        then = now.replace(hour=16, minute=0, second=0)
+        while then < now:
+            then += datetime.timedelta(days=1)
+        wait_time = (then-now).total_seconds()
+        await asyncio.sleep(wait_time)
         five_man_list = random.sample(person, k=5)
         five_adj_list = random.sample(adjective, k=5)
-
         actions = [
             f"{random.choice(person)} has been sent to jail for {random.choice(continuous_action)}.",
             f"{random.choice(person)} has been sent to jail for being {random.choice(adjective)}.",
@@ -194,7 +199,7 @@ async def daily_shitpost(channelid):
         channel = bot.get_channel(channelid)
         shitpost_content = random.choice(actions)
         await channel.send(shitpost_content)
-        await asyncio.sleep(60)
+        await asyncio.sleep(1)
 
 @bot.slash_command(name="shitpost", description="Sends a randomly generated shitpost. Only works at #bot-shitpost.", guild_ids=[testServerId])
 async def shitpost(interaction: Interaction):
@@ -222,4 +227,4 @@ async def on_ready():
     print(f"{bot.user.name} is online!")
 
 if __name__ == '__main__':
-    bot.run(os.environ["DISCORD_TOKEN"])
+    bot.run("MTAwMDk2NzAyNDgxOTgzMDg0NA.G_HZJi.kbpL25eMkzpiFQQ5CObPv_zAnLa9_UmwP-w3ck")
