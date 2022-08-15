@@ -227,4 +227,4 @@ async def on_ready():
     print(f"{bot.user.name} is online!")
 
 if __name__ == '__main__':
-    bot.run(os.environ([DISCORD_TOKEN]))
+    bot.run(os.environ["DISCORD_TOKEN"])
