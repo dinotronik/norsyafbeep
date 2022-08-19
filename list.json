@@ -62,7 +62,8 @@
         "Najib",
         "Donald Trump",
         "Adolf Hitler",
-        "Santa Claus"
+        "Santa Claus",
+        "Andrew Tate"
     ]
     ,
     "continuous_action": [
@@ -101,7 +102,8 @@
         "coding a horrible bot",
         "having an obsession with fictional characters",
         "mining crypto",
-        "owning NFTs"
+        "owning NFTs",
+        "joining Hustler's University"
     ]
     ,
     "continuous_action_with_noun": [
@@ -156,7 +158,7 @@
         "gullible",
         "obese",
         "down bad",
-        "mental",
+        "mentally ill",
         "easily butthurt",
         "feminine",
         "homophobic",
@@ -173,7 +175,6 @@
     ,
     "verb_action": [
         "cry",
-        "dance",
         "commit suicide",
         "smoke weed",
         "cringe",
@@ -279,7 +280,8 @@
         "Pokemon",
         "Adventure Time",
         "the MCU",
-        "Sword Art Online"
+        "Sword Art Online",
+        "The Fairly OddParents"
     ]
     ,
     "band": [
@@ -351,7 +353,7 @@
         "FPX",
         "Cloud 9",
         "1000 Ping",
-        "indian tech scammers",
+        "the indian tech scammers",
         "the Avengers",
         "the Jake Paulers",
         "the Gucci Gang",
