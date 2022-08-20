@@ -54,61 +54,6 @@ async def hadie(interaction: Interaction):
 async def hadie(ctx):
     await ctx.send("https://imgur.com/OlwPF6S")
 
-async def schedule_hourly_message(m, s, msg, channelid):
-    while True:
-        now = datetime.datetime.now()
-        then = now.replace(hour=datetime.datetime.now().hour, minute=m, second=s)
-        while then < now:
-            then += datetime.timedelta(hours=1)
-        wait_time = (then-now).total_seconds()
-        await asyncio.sleep(wait_time)
-
-        channel = bot.get_channel(channelid)
-
-        await channel.send(msg)
-        await asyncio.sleep(1)
-
-@bot.slash_command(name="hourly", description="Sends an hourly message at a specific time.", guild_ids=[testServerId])
-async def hourly(interaction: Interaction, message:str, minute:int, second:int):
-    print(message, minute, second)
-
-    if not (0 <= minute <= 60 and 0 <= second < 60):
-        raise commands.BadArgument()
-    
-    hour = datetime.datetime.now().hour
-    time = datetime.time(hour, minute, second)
-    timestr = time.strftime("%I:%M:%S %p")
-    await interaction.response.send_message(f"An hourly message will be sent at {timestr} every hour in this channel.\nHourly message: \"{message}\"")
-    await schedule_hourly_message(minute, second, message, interaction.channel_id)
-
-@bot.command(name="hourly")
-async def hourly(ctx, message:str, minute:int, second:int):
-    print(message, minute, second)
-
-    if not (0 <= minute <= 60 and 0 <= second < 60):
-        raise commands.BadArgument()
-
-    hour = datetime.datetime.now().hour
-    time = datetime.time(hour, minute, second)
-    timestr = time.strftime("%I:%M:%S %p")
-    await ctx.send(f"An hourly message will be sent at {timestr} every hour in this channel.\nHourly message: \"{message}\"\nTo confirm simply type `yes`")
-    try:
-        msg = await bot.wait_for("message", timeout=60, check=lambda message: message.author == ctx.author)
-    except asyncio.TimeoutError:
-        await ctx.send("You took too long to respond!")
-        return
-
-    if msg.content == "yes":
-        await ctx.send("Hourly message is ready!")
-        await schedule_hourly_message(minute, second, message, ctx.channel.id)
-    else:
-        await ctx.send("Hourly message cancelled.")
-
-@hourly.error
-async def hourly_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        await ctx.send("""Incorrect format. Correct format: `b!hourly "[message]" [minute] [second]`""")
-
 @bot.event
 async def on_ready():
     print(f"{bot.user.name} is online!")
