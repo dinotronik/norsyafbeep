@@ -88,7 +88,7 @@ async def on_ready():
         f"{random.choice(person)} would be fun at parties. :tada:",
         f"What if {five_man_list[0]} and {five_man_list[1]} kissed {random.choice(place)} :open_mouth::flushed::heart_eyes:",
         f"Therapist: Don\'t worry, {random.choice(job).partition(' ')[2]} {random.choice(person)} isn\'t real, they cant hurt you.",
-        f"This is so sad, {random.choice(person)} is {random.choice(adjective)}. Can we get 10 likes? :cry:",
+        f"{random.choice(person)} is {random.choice(adjective)}. This is so sad, Can we hit 15 likes? :cry:",
         f"Who lives in a pineapple {random.choice(place)}? It was {random.choice(person)}. :pineapple:",
         f"{random.choice(person)} has converted to Muslim. Alhamdulillah my brothers! :kaaba:",
         f"{random.choice(person)} has converted to Christian. Amen! :cross:",
