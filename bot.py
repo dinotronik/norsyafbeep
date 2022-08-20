@@ -48,11 +48,11 @@ async def SendMessage(ctx, message:str):
 
 @bot.slash_command(name="hadie", description="Sends a picture of Hadi, Professional Mother Player.", guild_ids=[testServerId])
 async def hadie(interaction: Interaction):
-    await interaction.response.send_message("https://imgur.com/a/DwsTPm1")
+    await interaction.response.send_message("https://imgur.com/OlwPF6S")
 
 @bot.command(name="hadie")
 async def hadie(ctx):
-    await ctx.send("https://imgur.com/a/DwsTPm1")   
+    await ctx.send("https://imgur.com/OlwPF6S")
 
 async def schedule_hourly_message(m, s, msg, channelid):
     while True:
