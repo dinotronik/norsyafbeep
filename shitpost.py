@@ -29,7 +29,6 @@ intents = nextcord.Intents.default()
 intents.message_content = True
 
 bot = commands.Bot(command_prefix="b!", intents=intents)
-testServerId = 698021111304159252
 
 @bot.event
 async def on_ready():
@@ -119,6 +118,7 @@ async def on_ready():
     channel = bot.get_channel(698057252283613214)
     shitpost_content = random.choice(actions)
     await channel.send(shitpost_content)
+    await bot.close()
 
 if __name__ == '__main__':
     bot.run(os.environ["DISCORD_TOKEN"])
