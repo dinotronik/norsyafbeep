@@ -77,9 +77,8 @@ async def hourly(interaction: Interaction, message:str, minute:int, second:int):
     
     hour = datetime.datetime.now().hour
     time = datetime.time(hour, minute, second)
-    timemin = time.strftime("%-M")
-    timesec = time.strftime("%-S")
-    await interaction.response.send_message(f"An hourly message will be sent at every {timemin} minute and {timesec} second in this channel.\nHourly message: \"{message}\"")
+    timestr = time.strftime("%I:%M:%S %p")
+    await interaction.response.send_message(f"An hourly message will be sent at {timestr} every hour in this channel.\nHourly message: \"{message}\"")
     await schedule_hourly_message(minute, second, message, interaction.channel_id)
 
 @bot.command(name="hourly")
@@ -91,9 +90,8 @@ async def hourly(ctx, message:str, minute:int, second:int):
 
     hour = datetime.datetime.now().hour
     time = datetime.time(hour, minute, second)
-    timemin = time.strftime("%-M")
-    timesec = time.strftime("%-S")
-    await ctx.send(f"An hourly message will be sent at every {timemin} minute and {timesec} second in this channel.\nHourly message: \"{message}\"\nTo confirm simply type `yes`")
+    timestr = time.strftime("%I:%M:%S %p")
+    await ctx.send(f"An hourly message will be sent at {timestr} every hour in this channel.\nHourly message: \"{message}\"\nTo confirm simply type `yes`")
     try:
         msg = await bot.wait_for("message", timeout=60, check=lambda message: message.author == ctx.author)
     except asyncio.TimeoutError:
