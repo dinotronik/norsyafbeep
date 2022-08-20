@@ -121,4 +121,4 @@ async def on_ready():
     await channel.send(shitpost_content)
 
 if __name__ == '__main__':
-    bot.run("MTAwMDk2NzAyNDgxOTgzMDg0NA.GJmNXQ.CyIsnxGdJZy2ME9Qb7MAGFHkgNxldauinUpvAY")
+    bot.run(os.environ["DISCORD_TOKEN"])
