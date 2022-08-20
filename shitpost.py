@@ -115,7 +115,7 @@ async def on_ready():
         f"I saw {random.choice(person)} {random.choice(continuous_action_with_noun)} children. Should I call the cops?",
         f"In a game of hide and seek, {random.choice(person)} would most likely hide {random.choice(place)}.",
     ]
-    channel = bot.get_channel(698057252283613214)
+    channel = bot.get_channel(1002088606904627250)
     shitpost_content = random.choice(actions)
     await channel.send(shitpost_content)
     await bot.close()
