@@ -32,7 +32,7 @@ bot = commands.Bot(command_prefix="b!", intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"{bot.user.name} is online!")
+    print(f"{bot.user.name} is shitposting!")
     five_man_list = random.sample(person, k=5)
     five_adj_list = random.sample(adjective, k=5)
     actions = [
@@ -118,6 +118,7 @@ async def on_ready():
     channel = bot.get_channel(1002088606904627250)
     shitpost_content = random.choice(actions)
     await channel.send(shitpost_content)
+    print("Shitposting complete!")
     await bot.close()
 
 if __name__ == '__main__':
