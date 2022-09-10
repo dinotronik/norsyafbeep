@@ -103,7 +103,7 @@ async def on_ready():
         f"Knock knock, {random.choice(person)}\'s on your door. Will you let them in?",
         f"{random.choice(person)} went back in time and {random.choice(past_action_with_noun)} {random.choice(person)}.",
         f"{random.choice(person)} went back in time to stop themselves from {random.choice(continuous_action)}.",
-        f"{random.choice(person)} had just {random.choice(past_action_with_noun)} {random.choice(person)}. Cry about it.",
+        f"{random.choice(person)} has just {random.choice(past_action_with_noun)} {random.choice(person)}. Cry about it.",
         f"Guys, being {random.choice(adjective)} is no laughing matter.",
         f"{random.choice(person)} is now transgender! :transgender_flag:",
         f"Describe {random.choice(person)} in 3 words: {five_adj_list[0]}, {five_adj_list[1]} and {five_adj_list[2]}.",
