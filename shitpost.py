@@ -77,7 +77,7 @@ async def on_ready():
         f"UPDATE: {random.choice(person)} got cancelled for being {random.choice(adjective)}.",
         f"{five_man_list[0]}, {five_man_list[1]} and {five_man_list[2]} walk into a bar...",
         f"Rejoice, {random.choice(person)} has become the new president of {random.choice(country)}! :crown:",
-        f"Do not search \"{random.choice(person)} {random.choice(continuous_action)}\", biggest mistake of my life.",
+        f"Do not search {random.choice(person)} {random.choice(continuous_action)}, worst mistake of my life.",
         f"{random.choice(celebrity)} has hired {random.choice(person)}!",
         f"{random.choice(person)} is playing {random.choice(person)}'s mother.",
         f"Oh no, {random.choice(person)} and {random.choice(person)} are having an affair! :broken_heart:",
