@@ -1,5 +1,4 @@
 from nextcord.ext import commands, tasks
-from itertools import cycle
 import nextcord
 import os
 
@@ -8,10 +7,6 @@ description = "A bot dedicated to Area-51."
 intents = nextcord.Intents.default()
 intents.message_content = True
 
-status = cycle([
-    "b!help for commands", "HARDCORE SEX", "TSFT Leaked Videos",
-    "HENTAI SIMULATOR"
-])
 
 bot = commands.Bot(command_prefix="b!",
                    description=description,
@@ -20,14 +15,8 @@ bot = commands.Bot(command_prefix="b!",
 testServerId = 698021111304159252
 
 
-@tasks.loop(minutes=20)
-async def change_status():
-    await bot.change_presence(activity=nextcord.Game(next(status)))
-
-
 @bot.event
 async def on_ready():
-    change_status.start()
     print(f"{bot.user.name} is online!")
 
 
