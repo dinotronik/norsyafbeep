@@ -156,5 +156,9 @@ async def reload_error(ctx, error):
         await ctx.send("You do not have the permissions to use this command.")
 
 
-if __name__ == '__main__':
+try:
     bot.run(os.environ["DISCORD_TOKEN"])
+except nextcord.errors.HTTPException:
+    print("You are being rate limited. Restarting...")
+    system("restarter.py")
+    system('kill 1')
