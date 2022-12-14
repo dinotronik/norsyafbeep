@@ -1,5 +1,6 @@
 from nextcord.ext import commands, tasks
 from itertools import cycle
+import keep_alive
 import nextcord
 import os
 
@@ -156,6 +157,7 @@ async def reload_error(ctx, error):
         await ctx.send("You do not have the permissions to use this command.")
 
 
+keep_alive.keep_alive()
 if __name__ == '__main__':
     try:
         bot.run(os.environ["DISCORD_TOKEN"])
