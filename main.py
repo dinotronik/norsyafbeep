@@ -156,7 +156,7 @@ async def reload_error(ctx, error):
         await ctx.send("You do not have the permissions to use this command.")
 
 
-while __name__ == '__main__':
+if __name__ == '__main__':
     try:
         bot.run(os.environ["DISCORD_TOKEN"])
     except nextcord.errors.HTTPException as e:
