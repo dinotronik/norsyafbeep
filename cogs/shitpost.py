@@ -1,9 +1,7 @@
-from re import M
-from nextcord.ext import commands
+from nextcord.ext import tasks, commands
 import json, random, datetime, asyncio
-import nextcord
-from nextcord import Interaction
-import os
+
+testServerId = 698021111304159252
 
 things = json.load(open("list.json"))
 
@@ -24,96 +22,15 @@ celebrity = things['celebrity']
 place = things['place']
 group = things['group']
 
-repeating_action = random.choice(continuous_action)
 
-intents = nextcord.Intents.default()
-intents.message_content = True
+class Shitpost(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.printer.start()
 
-bot = commands.Bot(command_prefix="b!", intents=intents)
-testServerId = 698021111304159252
-
-@bot.slash_command(name="say", description="Repeats your message.", guild_ids=[testServerId])
-async def sendmessage(interaction: Interaction, message):
-    if interaction.user.id == 234258656911163392:
-        await interaction.response.send_message("Syaffique is fucking stupid.")
-    else:
-        await interaction.response.send_message(message)
-
-@bot.command(name="say")
-async def SendMessage(ctx, message:str):
-    if ctx.author.id == 234258656911163392:
-        await ctx.send("Syaffique is fucking stupid.")
-    else:
-        await ctx.send(message)
-
-@bot.slash_command(name="hadie", description="Sends a picture of Hadi, Professional Mother Player.", guild_ids=[testServerId])
-async def hadie(interaction: Interaction):
-    await interaction.response.send_message("https://imgur.com/a/DwsTPm1")
-
-@bot.command(name="hadie")
-async def hadie(ctx):
-    await ctx.send("https://imgur.com/a/DwsTPm1")   
-
-async def schedule_hourly_message(m, s, msg, channelid):
-    while True:
-        now = datetime.datetime.now()
-        then = now.replace(hour=datetime.datetime.now().hour, minute=m, second=s)
-        while then < now:
-            then += datetime.timedelta(hours=1)
-        wait_time = (then-now).total_seconds()
-        await asyncio.sleep(wait_time)
-
-        channel = bot.get_channel(channelid)
-
-        await channel.send(msg)
-        await asyncio.sleep(1)
-
-@bot.slash_command(name="hourly", description="Sends an hourly message at a specific time.", guild_ids=[testServerId])
-async def hourly(interaction: Interaction, message:str, minute:int, second:int):
-    print(message, minute, second)
-
-    if not (0 <= minute <= 60 and 0 <= second < 60):
-        raise commands.BadArgument()
-    
-    hour = datetime.datetime.now().hour
-    time = datetime.time(hour, minute, second)
-    timemin = time.strftime("%-M")
-    timesec = time.strftime("%-S")
-    await interaction.response.send_message(f"An hourly message will be sent at every {timemin} minute and {timesec} second in this channel.\nHourly message: \"{message}\"")
-    await schedule_hourly_message(minute, second, message, interaction.channel_id)
-
-@bot.command(name="hourly")
-async def hourly(ctx, message:str, minute:int, second:int):
-    print(message, minute, second)
-
-    if not (0 <= minute <= 60 and 0 <= second < 60):
-        raise commands.BadArgument()
-
-    hour = datetime.datetime.now().hour
-    time = datetime.time(hour, minute, second)
-    timemin = time.strftime("%-M")
-    timesec = time.strftime("%-S")
-    await ctx.send(f"An hourly message will be sent at every {timemin} minute and {timesec} second in this channel.\nHourly message: \"{message}\"\nTo confirm simply type `yes`")
-    try:
-        msg = await bot.wait_for("message", timeout=60, check=lambda message: message.author == ctx.author)
-    except asyncio.TimeoutError:
-        await ctx.send("You took too long to respond!")
-        return
-
-    if msg.content == "yes":
-        await ctx.send("Hourly message is ready!")
-        await schedule_hourly_message(minute, second, message, ctx.channel.id)
-    else:
-        await ctx.send("Hourly message cancelled.")
-
-async def daily_shitpost(channelid):
-    while True:
-        now = datetime.datetime.now()
-        then = now.replace(hour=16, minute=0, second=0)
-        while then < now:
-            then += datetime.timedelta(days=1)
-        wait_time = (then-now).total_seconds()
-        await asyncio.sleep(wait_time)
+    @tasks.loop(hours=24)
+    async def printer(self):
+        repeating_action = random.choice(continuous_action)
         five_man_list = random.sample(person, k=5)
         five_adj_list = random.sample(adjective, k=5)
         actions = [
@@ -158,7 +75,7 @@ async def daily_shitpost(channelid):
             f"UPDATE: {random.choice(person)} got cancelled for being {random.choice(adjective)}.",
             f"{five_man_list[0]}, {five_man_list[1]} and {five_man_list[2]} walk into a bar...",
             f"Rejoice, {random.choice(person)} has become the new president of {random.choice(country)}! :crown:",
-            f"Do not search \"{random.choice(person)} {random.choice(continuous_action)}\", biggest mistake of my life.",
+            f"Do not search {random.choice(person)} {random.choice(continuous_action)}, worst mistake of my life.",
             f"{random.choice(celebrity)} has hired {random.choice(person)}!",
             f"{random.choice(person)} is playing {random.choice(person)}'s mother.",
             f"Oh no, {random.choice(person)} and {random.choice(person)} are having an affair! :broken_heart:",
@@ -169,7 +86,7 @@ async def daily_shitpost(channelid):
             f"{random.choice(person)} would be fun at parties. :tada:",
             f"What if {five_man_list[0]} and {five_man_list[1]} kissed {random.choice(place)} :open_mouth::flushed::heart_eyes:",
             f"Therapist: Don\'t worry, {random.choice(job).partition(' ')[2]} {random.choice(person)} isn\'t real, they cant hurt you.",
-            f"This is so sad, {random.choice(person)} is {random.choice(adjective)}. Can we get 10 likes? :cry:",
+            f"{random.choice(person)} is {random.choice(adjective)}. This is so sad, Can we hit 15 likes? :cry:",
             f"Who lives in a pineapple {random.choice(place)}? It was {random.choice(person)}. :pineapple:",
             f"{random.choice(person)} has converted to Muslim. Alhamdulillah my brothers! :kaaba:",
             f"{random.choice(person)} has converted to Christian. Amen! :cross:",
@@ -184,7 +101,7 @@ async def daily_shitpost(channelid):
             f"Knock knock, {random.choice(person)}\'s on your door. Will you let them in?",
             f"{random.choice(person)} went back in time and {random.choice(past_action_with_noun)} {random.choice(person)}.",
             f"{random.choice(person)} went back in time to stop themselves from {random.choice(continuous_action)}.",
-            f"{random.choice(person)} had just {random.choice(past_action_with_noun)} {random.choice(person)}. Cry about it.",
+            f"{random.choice(person)} has just {random.choice(past_action_with_noun)} {random.choice(person)}. Cry about it.",
             f"Guys, being {random.choice(adjective)} is no laughing matter.",
             f"{random.choice(person)} is now transgender! :transgender_flag:",
             f"Describe {random.choice(person)} in 3 words: {five_adj_list[0]}, {five_adj_list[1]} and {five_adj_list[2]}.",
@@ -194,37 +111,18 @@ async def daily_shitpost(channelid):
             f"{random.choice(person)} has adopted {random.choice(person)}.",
             f"I saw {random.choice(person)} {random.choice(continuous_action_with_noun)} {random.choice(person)}. :astonished:",
             f"I saw {random.choice(person)} {random.choice(continuous_action_with_noun)} children. Should I call the cops?",
-            f"In a game of hide and seek, {random.choice(person)} would most likely hide {random.choice(place)}.",
+            f"In a game of hide and seek, {random.choice(person)} would most likely hide {random.choice(place)}."
         ]
-        channel = bot.get_channel(channelid)
-        shitpost_content = random.choice(actions)
-        await channel.send(shitpost_content)
-        await asyncio.sleep(1)
+        now = datetime.datetime.now() - datetime.timedelta(hours=16)
+        then = now.replace(hour=0, minute=0, second=0,
+                           microsecond=0) + datetime.timedelta(days=1)
+        wait_time = (then - now).total_seconds()
+        if then > now:
+            await asyncio.sleep(wait_time)
+        channel_id = 1002088606904627250
+        channel = self.bot.get_channel(channel_id)
+        await channel.send(f"{random.choice(actions)}")
 
-@bot.slash_command(name="shitpost", description="Sends a randomly generated shitpost. Only works at #bot-shitpost.", guild_ids=[testServerId])
-async def shitpost(interaction: Interaction):
-    if interaction.channel_id == 1002088606904627250 or 698057252283613214:
-        await interaction.response.send_message("Daily shitposting has commenced.")
-        await daily_shitpost(interaction.channel_id)
-    else:
-        await interaction.response.send_message("This command only works in <#1002088606904627250>")
 
-@bot.command(name="shitpost")
-async def shitpost(ctx):
-    if ctx.channel.id == 1002088606904627250 or 698057252283613214:
-        await ctx.send("Daily shitposting has commenced.")
-        await daily_shitpost(ctx.channel.id)
-    else:
-        await ctx.send("This command only works in <#1002088606904627250>")
-
-@hourly.error
-async def hourly_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        await ctx.send("""Incorrect format. Correct format: `b!hourly "[message]" [minute] [second]`""")
-
-@bot.event
-async def on_ready():
-    print(f"{bot.user.name} is online!")
-
-if __name__ == '__main__':
-    bot.run(os.environ["DISCORD_TOKEN"])
+def setup(bot):
+    bot.add_cog(Shitpost(bot))
